@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "shp2json": "^1.4.0",
+    "georender-clip": "^1.0.1",
+    "georender-geojson": "^1.1.1",
+    "georender-eyros": "^1.0.0"
+  },
+  "scripts": {
+    "build": "./build.sh"
+  }
+}
