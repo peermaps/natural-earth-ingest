@@ -45,6 +45,12 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)50m(,|$)' > /dev/null); then
     | geojson-to-georender -t natural=glacier -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
     | georender-eyros -d $outdir/50m
+  shp2json $ne/50m_physical/ne_50m_playas.shp \
+    | geojson-to-georender -t natural=beach -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/50m
+  shp2json $ne/50m_physical/ne_50m_antarctic_ice_shelves_polys.shp \
+    | geojson-to-georender -t natural=glacier -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/50m
   shp2json $ne/50m_cultural/ne_50m_urban_areas.shp \
     | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
@@ -71,11 +77,26 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)10m(,|$)' > /dev/null); then
     | geojson-to-georender -t natural=glacier -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
     | georender-eyros -d $outdir/10m
+  shp2json $ne/10m_physical/ne_10m_playas.shp \
+    | geojson-to-georender -t natural=beach -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/10m
+  shp2json $ne/10m_physical/ne_10m_antarctic_ice_shelves_polys.shp \
+    | geojson-to-georender -t natural=glacier -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/10m
   shp2json $ne/10m_cultural/ne_10m_urban_areas.shp \
     | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
     | georender-eyros -d $outdir/10m
   shp2json $ne/10m_cultural/ne_10m_populated_places.shp \
     | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/10m
+  #shp2json $ne/10m_cultural/ne_10m_parks_and_protected_lands_area.shp \
+  #  | geojson-to-georender -t boundary=protected_area -r ./lib/labels.js --ra $id_file \
+  #  | georender-eyros -d $outdir/10m
+  shp2json $ne/10m_cultural/ne_10m_roads.shp \
+    | geojson-to-georender -t highway=primary -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/10m
+  shp2json $ne/10m_cultural/ne_10m_railroads.shp \
+    | geojson-to-georender -t railway=rail -r ./lib/labels.js --ra $id_file \
     | georender-eyros -d $outdir/10m
 fi
