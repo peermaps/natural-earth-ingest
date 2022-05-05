@@ -94,7 +94,7 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)10m(,|$)' > /dev/null); then
   #  | geojson-to-georender -t boundary=protected_area -r ./lib/labels.js --ra $id_file \
   #  | georender-eyros -d $outdir/10m
   shp2json $ne/10m_cultural/ne_10m_roads.shp \
-    | geojson-to-georender -t highway=primary -r ./lib/labels.js --ra $id_file \
+    | geojson-to-georender -t highway=other -r ./lib/labels.js --ra $id_file \
     | georender-eyros -d $outdir/10m
   shp2json $ne/10m_cultural/ne_10m_railroads.shp \
     | geojson-to-georender -t railway=rail -r ./lib/labels.js --ra $id_file \
