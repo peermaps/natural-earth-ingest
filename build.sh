@@ -22,6 +22,9 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)110m(,|$)' > /dev/null); then
     | geojson-to-georender -t natural=glacier -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
     | georender-eyros -d $outdir/110m
+  shp2json $ne/110m_cultural/ne_110m_populated_places.shp \
+    | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/110m
 fi
 
 if test -z "$m" || (echo "$m" | grep -E '(^|,)50m(,|$)' > /dev/null); then
@@ -46,6 +49,9 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)50m(,|$)' > /dev/null); then
     | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
     | georender-eyros -d $outdir/50m
+  shp2json $ne/50m_cultural/ne_50m_populated_places.shp \
+    | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
+    | georender-eyros -d $outdir/50m
 fi
 
 if test -z "$m" || (echo "$m" | grep -E '(^|,)10m(,|$)' > /dev/null); then
@@ -68,5 +74,8 @@ if test -z "$m" || (echo "$m" | grep -E '(^|,)10m(,|$)' > /dev/null); then
   shp2json $ne/10m_cultural/ne_10m_urban_areas.shp \
     | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
     | georender-clip --divide icosphere:0 \
+    | georender-eyros -d $outdir/10m
+  shp2json $ne/10m_cultural/ne_10m_populated_places.shp \
+    | geojson-to-georender -t place=city -r ./lib/labels.js --ra $id_file \
     | georender-eyros -d $outdir/10m
 fi
